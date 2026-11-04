@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Slab Design Input Verifier
+        </title>
+        <style>
+           
+        </style>
+        <link rel="stylesheet" type="text/css" href="slab_design.css">
+        <link rel="script" type="text/js" href="slab_design.js">
+        <script src="slab_design.js" defer></script>
+    </head>
+    <body>
+        <div id="BigCona1">
+            <div id="cona1">
+                <h2>Slab Design Input Verification</h2>
+                <label class="label">
+                    Characteristic strength of concrete (Fcu) [N/mm^2]:
+                </label>
+                <input type="number" id="Fcu" value="25">
+                <label class="label">
+                    Characteristic strength of steel (Fy) [N/mm^2]:
+                </label>
+                <input type="number" id="Fy" value="410">
+                <label class="label">
+                    Thickness of Slab [mm]:
+                </label>
+                <input type="number" id="thickness_slab" value="150">
+                <label class="label">
+                    Concrete Cover [mm]:
+                </label>
+                <input type="number" id="concrete_cover" value="20">
+                <label class="label">
+                    Diameter of rebar [mm]:
+                </label>
+                <input type="number" id="diameter_rebar" value="12">
+                <label class="label">
+                    Ultimate load [kN/m^2]:
+                </label>
+                <input type="number" id="ultimate_load" value="13.32">
+                <label class="label">
+                    Length of longer side by Ly[m]:
+                </label>
+                <input type="long" id="Ly" value="3.5">
+                <label class="label">
+                    Length of shorter side Lx [m]:
+                </label>
+                <input type="short" id="Lx" value="3.5">
+                <button id="Vi" onclick="verifyInputs()">
+                    Verify Inputs & Calculate
+                </button>
+                <div id="result"></div>
+            </div>
+        </div>
+        
+        <div id="cona2">
+            <h2>Coeff calculation</h2>
+            <label class="label">
+                B.M Values:
+            </label>
+            <input type="number" id="C1" value="1.0">
+            <label class="label">
+                B.M Values:
+            </label>
+             <input type="number" id="C2" value="1.0">
+            <label class="label">
+                B.M Coeff:
+            </label>
+            <input type="number" id="c1" value="0.0001">
+            <label class="label">
+                B.M Coeff:
+            </label>
+            <input type="number" id="c2" value="0.0001">
+             <label class="label">
+                Length of longer side by Ly[m]:
+            </label>
+            <input type="number" id="Ls" value="3.5" min="0" step="0.001">
+            <label class="label">
+                Length of shorter side Lx [m]:
+            </label>
+            <input type="number" id="Ssx" value="3.5" min="0" step="0.001">
+            <button onclick="verifyCoeff()">
+                Verify & Calculate
+            </button>
+            <div id="result2"></div>
+        </div>
+
+        <div>
+            <h2>BENDING MOMENTS</h2>
+            <label class="label">
+                Px:
+            </label>
+            <input type="number" id="px" value="1.002" min="0" step="0.001">
+
+            <label class="label">
+                Length of shorter side by Lx [m]:
+            </label>
+            <input type="number" id="Sx" value="1.002" min="0" step="0.001">
+
+            <label class="label">
+                Ultimate Load [kN/m^2]:
+            </label>
+            <input type="number" id="UL" value="13.5">
+            
+            <button onclick="verifyBM()">
+                Verify Bending Moments
+            </button>
+            <div id="result3"></div>
+        </div>
+
+       <!------<script>
+            function verifyInputs() {
+                const Fcu = parseFloat(document.getElementById("Fcu").value);
+
+                const Fy = parseFloat(document.getElementById("Fy").value);
+
+                const thickness_slab = parseFloat(document.getElementById("thickness_slab").value);
+
+                const concrete_cover = parseFloat(document.getElementById("concrete_cover").value);
+
+                const diameter_rebar = parseFloat(document.getElementById("diameter_rebar").value);
+
+                const Ultimate_load = parseFloat(document.getElementById("ultimate_load").value);
+
+                const Ly = parseFloat(document.getElementById("Ly").value);
+
+                const Lx = parseFloat(document.getElementById("Lx").value);
+
+                const effective_depth = thickness_slab - concrete_cover-diameter_rebar / 2 ;
+
+                const summary = ` 
+                    Characteristic strength of concrete (Fcu): ${Fcu} N/mm^2\n
+                    Characteristic strength of steel (Fy): ${Fy} N/mm^2\n
+                    
+                    Thickness of slab: ${thickness_slab} mm\n
+
+                    concrete cover: ${concrete_cover} mm\n
+
+                    Effective depth of slab: ${effective_depth} mm\n
+
+                    Ultimate_load : ${Ultimate_load} kN/m^2\n
+
+                    Length of Longer side (Ly): ${Ly} m\n
+
+                    Length of Shorter side (Lx):  ${Lx} m\n
+                    `;
+
+                    const confirmed = confirm("Please review the input values:\n\n" + summary + "\nAre all the inputs correct?");
+
+                    const resultDiv = document.getElementById("result");
+
+                    if (confirmed) {
+                        const Ly_Lx_ratio = Ly / Lx;
+                        resultDiv.textContent = `The ratio of Ly/Lx is: ${Ly_Lx_ratio.toFixed(3)}`;
+                    } else {
+                        resultDiv.textContent = "Please recheck your input values and try agian.";
+                        const effective_depth = thickness_slab - concrete_cover - diameter / 2;
+                        resultDiv.textContent = `The effective depth is: ${effective_depth.toFixed(3)}`;
+                    }
+
+            }
+        </script>-->
+    </body>
+</html>
